@@ -4,7 +4,7 @@ import mkcert from 'vite-plugin-mkcert';
 import tsconfigPaths from 'vite-tsconfig-paths';
 import tailwindcss from '@tailwindcss/vite'
 
-// https://vitejs.dev/config/
+// https://vitejs.dev
 export default defineConfig({
   css: {
     preprocessorOptions: {
