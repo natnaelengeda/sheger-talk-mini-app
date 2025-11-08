@@ -1,24 +1,38 @@
 import { useEffect, useState, type FC } from 'react';
 
+// UI Libraries
 import { List } from '@telegram-apps/telegram-ui';
+import { Toaster } from 'react-hot-toast';
+
+// React Redux / State
+import { useSelector } from 'react-redux';
+import { UserState } from '@/state/user';
+
+// Hooks & Context
+import { useSocket } from '@/context/SocketProvider';
+
+// Components
 import PageStart from '@/components/page-start';
 import OnlineCounter from '@/components/online-counter';
 import BottomBar from '@/components/bottom-bar';
-import { PageState } from '@/interface/pageState';
 import Messages from '@/components/messages';
-import { useSelector } from 'react-redux';
-import { UserState } from '@/state/user';
-import { useSocket } from '@/context/SocketProvider';
-import AppToast from '@/core/AppToast';
 import ConnectionRequest from '@/components/connection-request';
-import { IMessageData } from '@/interface/message';
 import { Page } from '@/components/page';
 
+// Types / Interfaces / Enums
+import { PageState } from '@/interface/pageState';
+import { IMessageData } from '@/interface/message';
+
+// Utilities / Core
+import AppToast from '@/core/AppToast';
+
 export const Home: FC = () => {
+  //  useTelegramRegistration();
+
   // Socket
   const socket = useSocket();
   const user = useSelector((state: { user: UserState }) => state.user);
-
+  console.log(user);
   // States
   const [pageState, setPageState] = useState<PageState>(PageState.Start);
 
@@ -28,6 +42,17 @@ export const Home: FC = () => {
   const [currentMessage, setCurrentMessage] = useState<string>("");
   const [messageList, setMessageList] = useState<Array<IMessageData> | []>([]);
 
+  // useEffect(()=>{
+  //   if(user.is_telegram_registered) return;
+  //   axios.post("/user/update-telegram-user",{
+  //     id: user.userId,
+  //     first_name: user.first_name,
+  //     last_name: user.last_name,
+  //     username: user.username,
+  //     photo_url: user.photo_url,
+  //     telegram_id: user.telegram_id,
+  //   });
+  // },[user.is_telegram_registered]);
 
   useEffect(() => {
     if (!socket) return;
@@ -133,6 +158,7 @@ export const Home: FC = () => {
   return (
     <Page back={false}>
       <List>
+       
         <div className='relative w-full h-full overflow-hidden'>
           <ConnectionRequest
             key={connectionRequest}
@@ -154,6 +180,7 @@ export const Home: FC = () => {
             setPageState={setPageState}
             setCurrentMessage={setCurrentMessage}
             setMessageList={setMessageList} />
+            <Toaster/>
         </div>
       </List>
     </Page>

@@ -15,9 +15,9 @@ export default function CancelAlert({ open, setCancelOpened, cancelChat, cancelL
     <Modal
       open={open}
       onChange={() => setCancelOpened(false)}>
-      <div className='w-full h-50 flex flex-col items-center justify-start gap-10 pt-10 px-10 pb-10'>
+      <div className='w-full h-60 flex flex-col items-center justify-start gap-10 pt-10 px-10 pb-10'>
         <span className='flex flex-col items-center justify-start gap-2'>
-          <h1 className='text-xl'>
+          <h1 className='text-xl text-center'>
             Are you sure you want to disconnect?
           </h1>
           <p className=''>You won't meet this person again</p>

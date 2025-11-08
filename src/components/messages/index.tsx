@@ -90,13 +90,15 @@ export default function Messages({ messageList, setMessageList }: IMessagesPage)
 
           {/* Messages displayed in chronological order */}
           {
-            messageList.map((message: IMessageData) => {
-              return <MessageBox
-                userSocketId={user.socketId}
-                messageSocketId={message.socket_id}
-                message={message.message}
-                time={message.time}
-              />;
+            messageList.map((message: IMessageData, index: number) => {
+              return (
+                <MessageBox
+                  key={index}
+                  userSocketId={user.socketId}
+                  messageSocketId={message.socket_id}
+                  message={message.message}
+                  time={message.time}
+                />);
             })
           }
         </div>
