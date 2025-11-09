@@ -64,6 +64,7 @@ export function SocketProvider({
       })
     };
 
+  
     const newSocket = io(serverUrl, { query: queryData });
 
     newSocket.on("connect", () => {

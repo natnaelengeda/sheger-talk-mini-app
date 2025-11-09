@@ -17,7 +17,7 @@ export default defineConfig({
     react(),
     tailwindcss(),
     tsconfigPaths(),
-    // mkcert(),
+    mkcert(),
   ],
   build: {
     target: 'esnext',
